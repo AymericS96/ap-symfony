@@ -2,8 +2,27 @@
 
     {% block body %}
 
-    {% for prénom in tab %}
-    {{ prénom }}   
-    {% endfor %}
+        <div class="container">
+            <div class="row" style="border:1px solid black">
+                <div class="col" style="border:1px solid red">
+                    {% for prénom in tab %}
+                    {{ prénom | nl2br }} <br>
+                    {% endfor %}
+                </div>
+
+                <div class="col" style="border:1px solid red">
+                    {% for prénom in tab %}
+                    {{ prénom | nl2br }} <br>
+                    {% endfor %}
+                </div>
+
+                <div class="col" style="border:1px solid red">
+                    {% for prénom in tab %}
+                    {{ prénom | nl2br }} <br>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
 
     {% endblock %}
