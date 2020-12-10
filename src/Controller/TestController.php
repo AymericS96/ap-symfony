@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,5 +26,14 @@ class TestController extends AbstractController
     {
         $products= $productRepository->findAll();
         return $this->render('test.html.twig', ['products' => $products]);
+    }
+
+    /**
+     * @Route("/success", name="success")
+     *
+     * @return void
+     */
+    public function success(){
+        return $this->render('success.html.twig');
     }
 }
