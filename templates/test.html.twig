@@ -4,25 +4,16 @@
 
         <div class="container">
             <div class="row" style="border:1px solid black">
-                <div class="col" style="border:1px solid red">
-                    {% for prénom in tab %}
-                    {{ prénom | nl2br }} <br>
-                    {% endfor %}
-                </div>
+                
+                    {# {{ dump(products) }} #}
 
-                <div class="col" style="border:1px solid red">
-                    {% for prénom in tab %}
-                    {{ prénom | nl2br }} <br>
+                    {% for item in products %}
+                        <div class="col" style="border:1px solid red">
+                        {{item.name}} / {{item.price}} / {{item.slug}}
+                        </div>
+                        <br>
                     {% endfor %}
-                </div>
 
-                <div class="col" style="border:1px solid red">
-                    {% for prénom in tab %}
-                    {{ prénom | nl2br }} <br>
-                    {% endfor %}
-                </div>
             </div>
-
-        </div>
 
     {% endblock %}
