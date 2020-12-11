@@ -26,8 +26,8 @@ class ProductController extends AbstractController
      */
     public function addProduct(KernelInterface $appKernel, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
-        $path = $appKernel->getProjectDir() . '/public';
-        $this->getParameter('app.dir.public');
+        // $path = $appKernel->getProjectDir() . '/public/img';
+        $path = $this->getParameter('app.dir.public') . '/img';
         
         $product = new Product;
         $form = $this->createForm(ProductFormType::class, $product);
@@ -53,7 +53,7 @@ class ProductController extends AbstractController
                 // Déplacer le fichier dans le répertoire public + sous-répertoire
                 try{
                     $file->move(
-                        '', $newFileName
+                        $path, $newFileName
                     );
                 }catch (FileException $e){
                     echo $e->getMessage();
