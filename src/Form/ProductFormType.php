@@ -8,10 +8,12 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProductFormType extends AbstractType
 {
@@ -21,11 +23,25 @@ class ProductFormType extends AbstractType
         ->add('name', TextType::class)
         ->add('price', IntegerType::class)
         ->add('slug', TextType::class)
+        ->add('img', FileType::class, [
+            'required' => false,
+            'constraints' => [
+                new File([
+                    'maxSize' => '4096k',
+                    'mimeTypes' => [
+                        'image/jpeg',
+                        'image/png',
+                    ],
+                    'mimeTypesMessage' => 'Merci de charger une image jpg/png',
+                    'uploadFormSizeErrorMessage' => 'Taille maximale de fichier 4 Mo'
+                ])
+            ]
+        ])
         ->add('category', EntityType::class,
         [
             'class' => Category::class,
             'choice_label' => 'name',
-            'placeholder' => 'choisir une catégorie',
+            'placeholder' => 'Choisir une catégorie',
             'label' => 'Catégorie',
         ]
         )
