@@ -47,7 +47,7 @@ class CategoryController extends AbstractController
     public function addCategory(Request $request, EntityManagerInterface $em){
        
         $category = new Category;
-        $form= $this->createForm(CategoryType::class, $category);
+        $form= $this->createForm(CategoryFormType::class, $category);
 
         $form->handleRequest($request);
 
@@ -84,5 +84,18 @@ class CategoryController extends AbstractController
         }
 
         return $this->render('category/edit.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/category/delete/{id}", name = "deleteCategory")
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param [type] $id
+     * @return Response
+     */
+    public function deleteCategory(Request $request, EntityManagerInterface $em, $id): Response
+    {
+        dd("WIP");
     }
 }

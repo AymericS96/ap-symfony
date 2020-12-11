@@ -93,6 +93,8 @@ class ProductController extends AbstractController
      */
     public function editProduct(Request $request, EntityManagerInterface $em, $id): Response
     {
+        $path = $this->getParameter('app.dir.public') . '/img';
+        
         $product = $em->getRepository(Product::class)->find($id);
 
         $form = $this->createForm(ProductFormType::class, $product);
@@ -101,6 +103,27 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
+            $file = $form['img']->getData();
+
+            if($file){
+                // Récupération du nom de fichier sans l'extension
+                $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+               
+                $newFileName = $originalFileName . '-' . uniqid() . '-' . 
+                
+                $file->guessExtension();
+                // Set nom dans la propriété img
+                $product->setImg($newFileName);
+
+                // Déplacer le fichier dans le répertoire public + sous-répertoire
+                try{
+                    $file->move(
+                        $path, $newFileName
+                    );
+                }catch (FileException $e){
+                    echo $e->getMessage();
+                }
+            }
             $em->persist($product);
             $em->flush();
 

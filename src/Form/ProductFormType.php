@@ -24,6 +24,7 @@ class ProductFormType extends AbstractType
         ->add('price', IntegerType::class)
         ->add('slug', TextType::class)
         ->add('img', FileType::class, [
+            'mapped' => false,
             'required' => false,
             'constraints' => [
                 new File([
