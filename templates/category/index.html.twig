@@ -8,12 +8,32 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<div class="container">
    
+<table class="table" >
+<tr>
+    <th>Nom</th>
+    <th>Description</th>
+    <th>Catégorie</th>
+    <th>Editer</th>
+    <th>Effacer</th>
+</tr>
 {% for category in listeCategory %}
-    {{category.name}} / {{category.description}} / {{category.slug}} <br>
-    <br>
+<tr>
+    <td>{{category.name}}</td>
+    <td>{{category.description}}</td>
+    <td>{{category.slug}}</td>
+    <td>
+        <a href="{{path('editCategory',{'id':category.id})}}"> 
+            Editer catégorie 
+        </a>
+    </td>
+    <td>??</td>
+
+</tr>
+
 {% endfor %}
+</table>
 
 </div>
 {% endblock %}
