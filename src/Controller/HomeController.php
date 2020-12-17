@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,14 @@ class HomeController extends AbstractController
     /**
      * @Route("/",name="index")
      *  */
-    public function index()
+    public function index(ProductRepository $productRepository)
     {
-        return $this->render('base.html.twig');
+        // Lister les produits
+        // $em= $this->getDoctrine()->getManager();
+        // $products= $em->getRepository(Product::class)->findAll();
+        // dd($products);
+        $products= $productRepository->findAll();
+        return $this->render('index.html.twig', ['products' => $products]);
     }
 
     /**
@@ -29,12 +35,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/product/{id}-{slug}", name = "detailProduct")
+     * @Route("/product/{id}-{slug}", name = "vueProduit")
      *
      * @param integer $id idCategory
      * @return Response
      */
-    public function showProduct(ProductRepository $productRepository, $id): Response
+    public function detailProduit(ProductRepository $productRepository, $id): Response
     {
         $product = $productRepository->find($id);
         return $this->render('product/show.html.twig', ['product' => $product]);

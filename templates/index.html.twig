@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Page d'accueil du site {% endblock %}
+
+{% block body %} 
+
+    <div class="container">
+        {% for product in products %}
+                
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/{{product.img}}" alt={{product.name}} width="500">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.price}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        {% endfor %}
+    </div>
+
+{% endblock %}
