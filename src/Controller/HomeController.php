@@ -26,24 +26,13 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/test",name="test")
-     *  */
-    public function test(ProductRepository $productRepository)
-    {
-        $products= $productRepository->findAll();
-        return $this->render('test.html.twig', ['products' => $products]);
-    }
-
-    /**
-     * @Route("/product/{id}-{slug}", name = "vueProduit")
-     *
-     * @param integer $id idCategory
-     * @return Response
+     * @Route("/produit/{id}-{slug}", name="vueProduit")
      */
-    public function detailProduit(ProductRepository $productRepository, $id): Response
+    public function detailProduit(Product $product): Response
     {
-        $product = $productRepository->find($id);
-        return $this->render('product/show.html.twig', ['product' => $product]);
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
     }
 
     /**

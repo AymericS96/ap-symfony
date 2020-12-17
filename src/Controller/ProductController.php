@@ -22,6 +22,17 @@ class ProductController extends AbstractController
 {
 
     /**
+     * Liste les produits d'une catégorie
+     * @Route("/admin/product/detail/{id}", name="detailProduit")
+     */
+    public function categoryProductList(Product $product): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * @Route("/admin/product/add", name="ajoutProduit")
      */
     public function addProduct(KernelInterface $appKernel, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
@@ -39,6 +50,8 @@ class ProductController extends AbstractController
             $product->setSlug($slugger->slug($product->getName()));
 
             $file = $form['img']->getData();
+            $idCategory = $form['category']->getData()->getId();
+            //dd($idCategory);
 
             if($file){
                 // Récupération du nom de fichier sans l'extension
@@ -63,8 +76,10 @@ class ProductController extends AbstractController
 
             $em->persist($product);
             $em->flush();
+            
+            $this->addFlash('success', 'Produit ajouté avec succès');
 
-            return $this->redirectToRoute('success', []);
+            return $this->redirectToRoute('categoryProduct', ['id' => $idCategory]);
         }
 
         return $this->render('product/add.html.twig', [
@@ -133,8 +148,15 @@ class ProductController extends AbstractController
     public function deleteProduct(Product $product, EntityManagerInterface $em, $id): Response
     {
         // $product = $productRepository->find($id);
+        $idCategory= $product->getCategory()->getId();
+        dd($idCategory);
         $em->remove($product);
         $em->flush();
+
+        $this->addFlash('success', 'Produit effacé avec succès');
+
+        return $this->redirectToRoute('categoryProduct', ['id' => $idCategory]);
+
         return $this->redirectToRoute('success');
     }
 }

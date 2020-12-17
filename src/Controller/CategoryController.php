@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
+     * Liste des catégories
      * @Route("/category", name="category")
      */
     public function index(CategoryRepository $categoryRepository): Response
@@ -55,7 +56,9 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('success');
+            $this->addFlash('success', 'Catégorie ajoutée avec succès');
+
+            return $this->redirectToRoute('success',);
         }
 
         return $this->render('category/add.html.twig', ['form' => $form->createView()]);
