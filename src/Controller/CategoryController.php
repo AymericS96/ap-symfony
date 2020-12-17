@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("category/add", name= "ajoutCategorie")
+     * @Route("/admin/category/add", name= "ajoutCategorie")
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("category/edit/{id}", name= "editCategory")
+     * @Route("/admin/category/edit/{id}", name= "editCategory")
      *
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -87,7 +87,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/category/delete/{id}", name = "deleteCategory")
+     * @Route("/admin/category/delete/{id}", name = "deleteCategory")
      *
      * @param Request $request
      * @param EntityManagerInterface $em

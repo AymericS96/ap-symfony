@@ -22,7 +22,7 @@ class ProductController extends AbstractController
 {
 
     /**
-     * @Route("/product/add", name="ajoutProduit")
+     * @Route("/admin/product/add", name="ajoutProduit")
      */
     public function addProduct(KernelInterface $appKernel, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -73,19 +73,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/{id}", name = "detailProduct")
-     *
-     * @param integer $id idCategory
-     * @return Response
-     */
-    public function showProduct(ProductRepository $productRepository, $id): Response
-    {
-        $product = $productRepository->find($id);
-        return $this->render('product/show.html.twig', ['product' => $product]);
-    }
-
-    /**
-     * @Route("/product/edit/{id}", name= "editProduct")
+     * @Route("/admin/product/edit/{id}", name= "editProduct")
      *
      * @param ProductRepository $productRepository
      * @param integer $id idProduct
@@ -136,7 +124,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/delete/{id}", name= "deleteProduct")
+     * @Route("/admin/product/delete/{id}", name= "deleteProduct")
      *
      * @param ProductRepository $productRepository
      * @param integer $id idProduct
