@@ -19,8 +19,8 @@
 				</a>
 			</li>
 		{% endif %}
-		
-			{% if is_granted('ROLE_ADMIN') %}
+
+			{% if is_granted('ROLE_STAFF') %}
 
 			<li class="nav-item">
 				<a class="nav-link" href="{{path('admin_ajoutProduit')}}">Ajout Produit</a>

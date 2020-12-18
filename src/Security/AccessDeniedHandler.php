@@ -19,7 +19,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
     public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
-        $content = "Accès interdit, vous devez avoir les privilèges " . $accessDeniedException->getAttributes()[0] . " <a href='/index'>Retourner à l'accueil</a>";
+        $content = "Accès interdit, vous devez avoir les privilèges " . $accessDeniedException->getAttributes()[0] . " <a href='/'>Retourner à l'accueil</a>";
 
         return new Response($content, 403);
     }
