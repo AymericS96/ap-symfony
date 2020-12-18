@@ -35,14 +35,4 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    /**
-     * Liste les utilisateurs existants
-     * @Route("/profile/userslist", name= "usersList")
-     */
-    public function usersList(UserRepository $userrepo)
-    {
-        $users= $userrepo->findAll();
-        // dd($users);
-        return $this->render('security/usersList.html.twig', ['users' => $users]);
-    }
 }
