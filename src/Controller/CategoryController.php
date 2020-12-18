@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/admin", name= "admin_")
+ */
 class CategoryController extends AbstractController
 {
     /**
@@ -41,7 +44,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/add", name= "ajoutCategorie")
+     * @Route("/category/add", name= "ajoutCategorie")
      *
      * @return void
      */
@@ -65,7 +68,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/edit/{id}", name= "editCategory")
+     * @Route("/category/edit/{id}", name= "editCategory")
      *
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -90,7 +93,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/delete/{id}", name = "deleteCategory")
+     * @Route("/category/delete/{id}", name = "deleteCategory")
      *
      * @param Request $request
      * @param EntityManagerInterface $em

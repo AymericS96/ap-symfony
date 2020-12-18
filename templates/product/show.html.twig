@@ -20,6 +20,9 @@
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">{{product.price}}</p>
                 </div>
+                {% if app.user %}
+                <button class="btn btn-info"> <a href="{{path('admin_editProduct', {id:product.id,slug:product.slug})}}"></a> Editer </button>
+                {% endif %}
             </div>
         </div>
     </div>

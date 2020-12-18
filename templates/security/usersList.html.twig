@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Utilisateurs {% endblock %}
+
+{% block body %} 
+
+{% if app.user %}
+    <div class="container">
+        {% for user in users %}
+                
+        <div class="row">
+            <div class="col">
+                <p> {{user.email}} / {{user.roles[0]}} </p>
+            </div>
+        </div>
+                
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

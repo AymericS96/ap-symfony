@@ -18,12 +18,15 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+/**
+ * @Route("/admin", name= "admin_")
+ */
 class ProductController extends AbstractController
 {
 
     /**
      * Liste les produits d'une catégorie
-     * @Route("/admin/product/detail/{id}", name="detailProduit")
+     * @Route("/product/detail/{id}", name="detailProduit")
      */
     public function categoryProductList(Product $product): Response
     {
@@ -33,7 +36,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/add", name="ajoutProduit")
+     * @Route("/product/add", name="ajoutProduit")
      */
     public function addProduct(KernelInterface $appKernel, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -88,7 +91,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/edit/{id}", name= "editProduct")
+     * @Route("/product/edit/{id}", name= "editProduct")
      *
      * @param ProductRepository $productRepository
      * @param integer $id idProduct
@@ -139,7 +142,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/delete/{id}", name= "deleteProduct")
+     * @Route("/product/delete/{id}", name= "deleteProduct")
      *
      * @param ProductRepository $productRepository
      * @param integer $id idProduct
