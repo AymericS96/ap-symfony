@@ -133,7 +133,7 @@ class ProductController extends AbstractController
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('success');
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('product/edit.html.twig', [
