@@ -97,11 +97,13 @@ class CategoryController extends AbstractController
      *
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param [type] $id
-     * @return Response
+     * @param id $id
      */
-    public function deleteCategory(Request $request, EntityManagerInterface $em, $id): Response
+    public function deleteCategory(Category $category, EntityManagerInterface $em, $id)
     {
-        dd("WIP");
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_category', []);
     }
 }
