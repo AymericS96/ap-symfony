@@ -21,7 +21,7 @@
                     <p class="card-text">{{product.price}}</p>
                 </div>
                 {% if app.user %}
-                <button class="btn btn-info"> <a href="{{path('admin_editProduct', {id:product.id,slug:product.slug})}}"></a> Editer </button>
+                <a class="btn btn-info" href="{{path('admin_editProduct', {id:product.id,slug:product.slug})}}">Editer</a>  
                 {% endif %}
             </div>
         </div>
