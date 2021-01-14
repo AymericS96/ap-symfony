@@ -34,40 +34,26 @@ class ProductFixtures extends Fixture
         $category1= $this->em->getRepository(Category::class)->find(1);
         $category2= $this->em->getRepository(Category::class)->find(2);
 
-        $names= [
-            "Iphone 18", 
-            "Samsung S45", 
-            "Motorola XB48", 
-            "Samsung S47",
-            "Iphone 20",
-            "Iphone 25",
-            "Samsung A23",
-            "Samsung Galaxy S34",
-            "Motorola XB43",
-            "Motorola GH56" 
-        ];
-                    
-        $imgs= ["iphone-11.jpg", "motorola-edge.jpg", "motorola-moto-e6.jpg", "samsung-galaxy-a20.jpg", "samsung-galaxy-note-20.jpg", "samsung-galaxy-s20.jpg", "motorola-moto-e6.jpg", "samsung-galaxy-a20.jpg", "samsung-galaxy-note-20.jpg", "samsung-galaxy-s20.jpg"];
-
-        for($i_pdt= 0; $i_pdt < 8; $i_pdt++)
-        {
+        for ($i = 0; $i < 8; $i++) {
             $product = new Product();
-            
-            $randNameIndex = random_int(0, count($names) - 1);
-            $name = $names[$randNameIndex];
 
-            $randImageIndex = random_int(0, count($imgs) - 1);
-            $image = $imgs[$randImageIndex];
+            $nameArray = ["Iphone 9", "Iphone 10", "Iphone 11", "Iphone 12", "Samsung S9", "Samsung S10", "Samsung S20", "Samsung S21", "Samsung S22", "Samsung S23",];
+            $imageArray = ["iphone-7.jpg", "toto2.jpeg", "toto-5fd3977c3c5f1.jpeg", "xiaomi.jpg", "huawei-p20.jpg", "iphone-7.jpg", "toto2.jpeg", "toto-5fd3977c3c5f1.jpeg", "xiaomi.jpg", "huawei-p20.jpg",];
+
+            $randNameIndex = random_int(0, count($nameArray) - 1);
+            $name = $nameArray[$randNameIndex];
+
+            $randImageIndex = random_int(0, count($imageArray) - 1);
+            $image = $imageArray[$randImageIndex];
 
             $price = random_int(10000, 20000);
-
             $slug = $this->slugger->slug($name);
-            
-            $category= substr($name, 0, 1) === 'I' ? $category2 : $category1;
 
-            // On enlève les éléments du tableau
-            unset($names[$randNameIndex]);
-            unset($imgs[$randImageIndex]);
+            $category = substr($name, 0, 1) === 'I' ? $category1 : $category2;
+
+            //on enlève les éléments du tableau
+            unset($nameArray[$randNameIndex]);
+            unset($imageArray[$randImageIndex]);
 
             $product->setName($name)
                 ->setPrice($price)
