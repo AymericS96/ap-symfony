@@ -32,6 +32,9 @@
 			{% endif %}
 		</ul>
 	</div>
+		<div>
+			<a class="btn btn-secondary" href="{{ path('cart') }}"> Mon panier</a>
+		</div>
 			{% if app.user %}
             <div class="d-flex">
 				<button class="btn btn-outline-success my-2 my-sm-0"> {{ app.user.email }}</button>

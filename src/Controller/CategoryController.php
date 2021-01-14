@@ -61,7 +61,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('success', 'Catégorie ajoutée avec succès');
 
-            return $this->redirectToRoute('category',);
+            return $this->redirectToRoute('category');
         }
 
         return $this->render('category/add.html.twig', ['form' => $form->createView()]);
